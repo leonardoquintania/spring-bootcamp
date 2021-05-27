@@ -1,0 +1,18 @@
+package br.com.uniciv.mycash.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.uniciv.mycash.repository.UsuarioRepository;
+
+@Service
+public class UsuarioService {
+
+	//-- Injeção de dependencia - inversão de controle
+	@Autowired
+	private UsuarioRepository repo;
+	
+	
+	
+	
+}

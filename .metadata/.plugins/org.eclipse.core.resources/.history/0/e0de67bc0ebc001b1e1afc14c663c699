@@ -1,0 +1,14 @@
+package br.com.uniciv.mycash.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.com.uniciv.mycash.repository.UsuarioRepository;
+
+public class UsuarioService {
+
+	@Autowired
+	private UsuarioRepository repo;
+	
+	
+	
+}

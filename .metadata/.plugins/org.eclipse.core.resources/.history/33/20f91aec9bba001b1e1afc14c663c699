@@ -1,0 +1,13 @@
+package br.com.uniciv.mycash.web.dto.error;
+
+import java.time.LocalDateTime;
+
+import org.springframework.http.HttpStatus;
+
+public class ApiError {
+	
+	private HttpStatus status;
+	private LocalDateTime  dataHora;
+	private String mensagem;
+
+}

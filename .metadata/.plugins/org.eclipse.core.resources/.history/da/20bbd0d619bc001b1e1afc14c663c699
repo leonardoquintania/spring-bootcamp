@@ -1,0 +1,27 @@
+package br.com.uniciv.mycash.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.uniciv.mycash.domain.Usuario;
+import br.com.uniciv.mycash.repository.UsuarioRepository;
+
+@Service
+public class UsuarioService {
+
+	// -- Injeção de dependencia - inversão de controle
+	@Autowired
+	private UsuarioRepository repo;
+
+	public List<Usuario> todos() {
+		return repo.findAll();
+	}
+	
+	public Usuario apenasUm(String email) {
+	//	return repo.findOne(null)
+	}
+
+	
+}

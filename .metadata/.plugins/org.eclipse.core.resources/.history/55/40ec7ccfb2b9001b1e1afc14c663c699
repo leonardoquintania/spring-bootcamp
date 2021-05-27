@@ -1,0 +1,5 @@
+package br.com.uniciv.mycash.web.api;
+
+public class LancamentoController {
+
+}

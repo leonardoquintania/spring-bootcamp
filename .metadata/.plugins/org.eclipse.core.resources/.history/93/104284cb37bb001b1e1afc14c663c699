@@ -1,0 +1,8 @@
+package br.com.uniciv.mycash.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class LancamentoService {
+
+}

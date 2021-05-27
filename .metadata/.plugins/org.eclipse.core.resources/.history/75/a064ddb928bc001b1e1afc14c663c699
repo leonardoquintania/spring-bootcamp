@@ -1,0 +1,64 @@
+package br.com.uniciv.mycash.service;
+
+import java.util.List;
+
+import javax.persistence.EntityNotFoundException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.uniciv.mycash.domain.Usuario;
+import br.com.uniciv.mycash.domain.UsuarioRole;
+import br.com.uniciv.mycash.exception.UsuarioException;
+import br.com.uniciv.mycash.repository.UsuarioRepository;
+
+@Service
+public class UsuarioService {
+
+	// -- Injeção de dependencia - inversão de controle
+	@Autowired
+	private UsuarioRepository repo;
+
+	public List<Usuario> todos() {
+		return repo.findAll();
+	}
+	
+	public void registraUsuarioAdmin(String email, String senha) {
+		
+		if(repo.findByEmail(email).isEmpty()) {
+			Usuario usuario = new Usuario();
+			usuario.setEmail(email);
+			usuario.setSenha(senha);
+			usuario.setRole(UsuarioRole.ROLE_ADMIN);
+			repo.save(usuario);
+		}		
+		
+	}
+
+	public Usuario save(String email, String senha) {
+		
+		Usuario usuario = new Usuario();
+		usuario.setEmail(email);
+		usuario.setSenha(senha);
+		usuario.setRole(UsuarioRole.ROLE_USER);
+		
+		if(repo.findByEmail(email).isPresent())
+			throw new UsuarioException("Já existe usuário com este e-mail");
+		
+		return repo.save(usuario);
+	}
+
+	public Usuario findByEmail(String email) {
+		return repo.findByEmail(email).orElseThrow(()-> new EntityNotFoundException());
+	}
+
+	public Usuario resetarSenha(String email, String senhaNova) {	
+		
+		Usuario usuario = findByEmail(email);
+		usuario.setEmail(senhaNova);
+		
+		return repo.save(usuario);
+	}
+
+	
+}
